@@ -1,8 +1,10 @@
-
-const server = require('http').createServer();
-const io = require('socket.io')(server);
-io.on('connection', client => {
-  client.on('event', data => { /* … */ });
-  client.on('disconnect', () => { /* … */ });
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+http.createServer((req, res) => {
+res.write('Hello World!');
+res.end();
+}
+).listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
-server.listen(3000);
