@@ -1,13 +1,8 @@
-import { createServer } from "http";
-import { Server } from "socket.io";
 
-const httpServer = createServer();
-const io = new Server(httpServer, {
-  // options
+const server = require('http').createServer();
+const io = require('socket.io')(server);
+io.on('connection', client => {
+  client.on('event', data => { /* … */ });
+  client.on('disconnect', () => { /* … */ });
 });
-
-io.on("connection", (socket) => {
-  // ...
-});
-
-httpServer.listen(3000);
+server.listen(3000);
